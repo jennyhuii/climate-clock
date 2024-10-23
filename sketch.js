@@ -1,21 +1,6 @@
 let data;
 let totalRowCount;
 let rowNum = 0;
-const columns = [
-  "Year",
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
 
 const january = [];
 const february = [];
@@ -29,8 +14,6 @@ const september = [];
 const october = [];
 const november = [];
 const december = [];
-
-let columnNum = 1;
 
 function preload() {
   data = loadTable("data.csv", "csv", "header");
@@ -52,56 +35,157 @@ function draw() {
   const row = data.getRow(rowNum);
   const circleSize = rowNum * 5;
 
-  circleColor(row.obj[columns[columnNum]]);
-  arc(windowWidth / 2, windowHeight / 2, circleSize, circleSize, -90, -60);
-  columnNum++;
+  january.push({ width: circleSize, anomaly: row.obj["Jan"] });
+  february.push({ width: circleSize, anomaly: row.obj["Feb"] });
+  march.push({ width: circleSize, anomaly: row.obj["Mar"] });
+  april.push({ width: circleSize, anomaly: row.obj["Apr"] });
+  may.push({ width: circleSize, anomaly: row.obj["May"] });
+  june.push({ width: circleSize, anomaly: row.obj["Jun"] });
+  july.push({ width: circleSize, anomaly: row.obj["Jul"] });
+  august.push({ width: circleSize, anomaly: row.obj["Aug"] });
+  september.push({ width: circleSize, anomaly: row.obj["Sep"] });
+  october.push({ width: circleSize, anomaly: row.obj["Oct"] });
+  november.push({ width: circleSize, anomaly: row.obj["Nov"] });
+  december.push({ width: circleSize, anomaly: row.obj["Dec"] });
 
-  circleColor(row.obj[columns[columnNum]]);
-  arc(windowWidth / 2, windowHeight / 2, circleSize, circleSize, -60, -30);
-  columnNum++;
+  for (let i = 0; i < january.length; i++) {
+    circleColor(january[i].anomaly);
+    arc(
+      windowWidth / 2,
+      windowHeight / 2,
+      january[i].width,
+      january[i].width,
+      -90,
+      -60
+    );
+  }
 
-  circleColor(row.obj[columns[columnNum]]);
-  arc(windowWidth / 2, windowHeight / 2, circleSize, circleSize, -30, 0);
-  columnNum++;
+  for (let i = 0; i < february.length; i++) {
+    circleColor(february[i].anomaly);
+    arc(
+      windowWidth / 2,
+      windowHeight / 2,
+      february[i].width,
+      february[i].width,
+      -60,
+      -30
+    );
+  }
 
-  circleColor(row.obj[columns[columnNum]]);
-  arc(windowWidth / 2, windowHeight / 2, circleSize, circleSize, 0, 30);
-  columnNum++;
+  for (let i = 0; i < march.length; i++) {
+    circleColor(march[i].anomaly);
+    arc(
+      windowWidth / 2,
+      windowHeight / 2,
+      march[i].width,
+      march[i].width,
+      -30,
+      0
+    );
+  }
 
-  circleColor(row.obj[columns[columnNum]]);
-  arc(windowWidth / 2, windowHeight / 2, circleSize, circleSize, 30, 60);
-  columnNum++;
+  for (let i = 0; i < april.length; i++) {
+    circleColor(april[i].anomaly);
+    arc(
+      windowWidth / 2,
+      windowHeight / 2,
+      april[i].width,
+      april[i].width,
+      0,
+      30
+    );
+  }
 
-  circleColor(row.obj[columns[columnNum]]);
-  arc(windowWidth / 2, windowHeight / 2, circleSize, circleSize, 60, 90);
-  columnNum++;
+  for (let i = 0; i < may.length; i++) {
+    circleColor(may[i].anomaly);
+    arc(windowWidth / 2, windowHeight / 2, may[i].width, may[i].width, 30, 60);
+  }
 
-  circleColor(row.obj[columns[columnNum]]);
-  arc(windowWidth / 2, windowHeight / 2, circleSize, circleSize, 90, 120);
-  columnNum++;
+  for (let i = 0; i < june.length; i++) {
+    circleColor(june[i].anomaly);
+    arc(
+      windowWidth / 2,
+      windowHeight / 2,
+      june[i].width,
+      june[i].width,
+      60,
+      90
+    );
+  }
 
-  circleColor(row.obj[columns[columnNum]]);
-  arc(windowWidth / 2, windowHeight / 2, circleSize, circleSize, 120, 150);
-  columnNum++;
+  for (let i = 0; i < july.length; i++) {
+    circleColor(july[i].anomaly);
+    arc(
+      windowWidth / 2,
+      windowHeight / 2,
+      july[i].width,
+      july[i].width,
+      90,
+      120
+    );
+  }
 
-  circleColor(row.obj[columns[columnNum]]);
-  arc(windowWidth / 2, windowHeight / 2, circleSize, circleSize, 150, 180);
-  columnNum++;
+  for (let i = 0; i < august.length; i++) {
+    circleColor(august[i].anomaly);
+    arc(
+      windowWidth / 2,
+      windowHeight / 2,
+      august[i].width,
+      august[i].width,
+      120,
+      150
+    );
+  }
 
-  circleColor(row.obj[columns[columnNum]]);
-  arc(windowWidth / 2, windowHeight / 2, circleSize, circleSize, 180, 210);
-  columnNum++;
+  for (let i = 0; i < september.length; i++) {
+    circleColor(september[i].anomaly);
+    arc(
+      windowWidth / 2,
+      windowHeight / 2,
+      september[i].width,
+      september[i].width,
+      150,
+      180
+    );
+  }
 
-  circleColor(row.obj[columns[columnNum]]);
-  arc(windowWidth / 2, windowHeight / 2, circleSize, circleSize, 210, 240);
-  columnNum++;
+  for (let i = 0; i < october.length; i++) {
+    circleColor(october[i].anomaly);
+    arc(
+      windowWidth / 2,
+      windowHeight / 2,
+      october[i].width,
+      october[i].width,
+      180,
+      210
+    );
+  }
 
-  circleColor(row.obj[columns[columnNum]]);
-  arc(windowWidth / 2, windowHeight / 2, circleSize, circleSize, 240, 270);
-  columnNum++;
+  for (let i = 0; i < november.length; i++) {
+    circleColor(november[i].anomaly);
+    arc(
+      windowWidth / 2,
+      windowHeight / 2,
+      november[i].width,
+      november[i].width,
+      210,
+      240
+    );
+  }
+
+  for (let i = 0; i < december.length; i++) {
+    circleColor(december[i].anomaly);
+    arc(
+      windowWidth / 2,
+      windowHeight / 2,
+      december[i].width,
+      december[i].width,
+      240,
+      270
+    );
+  }
 
   rowNum++;
-  columnNum = 1;
   if (rowNum === totalRowCount) {
     noLoop();
   }
