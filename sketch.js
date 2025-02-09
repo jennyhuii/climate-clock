@@ -22,13 +22,12 @@ function preload() {
 function setup() {
   totalRowCount = data.getRowCount();
   createCanvas(windowWidth, windowHeight);
-  frameRate(10);
   colorMode(RGB);
   angleMode(DEGREES);
 }
 
 function draw() {
-  background(0);
+  background(255);
   noFill();
   //the stroke weight is twice as much if the screen is fullsize
   strokeWeight(1);
