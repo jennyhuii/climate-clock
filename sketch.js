@@ -1,6 +1,8 @@
 let data;
 let totalRowCount;
 let rowNum = 0;
+let widthSpacing;
+let heightSpacing;
 
 const january = [];
 const february = [];
@@ -23,165 +25,198 @@ function setup() {
   totalRowCount = data.getRowCount();
   createCanvas(windowWidth, windowHeight);
   colorMode(RGB);
-  angleMode(DEGREES);
 }
 
 function draw() {
-  background(255);
+  background(0);
   noFill();
-  //the stroke weight is twice as much if the screen is fullsize
-  strokeWeight(1);
+
   const row = data.getRow(rowNum);
-  const circleSize = rowNum * 5;
 
-  january.push({ width: circleSize, anomaly: row.obj["Jan"] });
-  february.push({ width: circleSize, anomaly: row.obj["Feb"] });
-  march.push({ width: circleSize, anomaly: row.obj["Mar"] });
-  april.push({ width: circleSize, anomaly: row.obj["Apr"] });
-  may.push({ width: circleSize, anomaly: row.obj["May"] });
-  june.push({ width: circleSize, anomaly: row.obj["Jun"] });
-  july.push({ width: circleSize, anomaly: row.obj["Jul"] });
-  august.push({ width: circleSize, anomaly: row.obj["Aug"] });
-  september.push({ width: circleSize, anomaly: row.obj["Sep"] });
-  october.push({ width: circleSize, anomaly: row.obj["Oct"] });
-  november.push({ width: circleSize, anomaly: row.obj["Nov"] });
-  december.push({ width: circleSize, anomaly: row.obj["Dec"] });
+  const xSpacing = windowWidth / 4;
+  const ySpacing = windowHeight / 3;
+  const xInitDistance = windowWidth / 8 - rowNum;
+  const yInitDistance = windowHeight / 6 - rowNum;
+  widthSpacing = windowWidth / 8 / data.getRowCount();
+  heightSpacing = windowHeight / 6 / data.getRowCount();
+  console.log(widthSpacing, heightSpacing);
 
+  const januaryMidX = xInitDistance;
+  const januaryMidY = yInitDistance;
+
+  const februaryMidX = xInitDistance + xSpacing;
+  const februaryMidY = yInitDistance;
+
+  const marchMidX = xInitDistance + xSpacing * 2;
+  const marchMidY = yInitDistance;
+
+  const aprilMidX = xInitDistance + xSpacing * 3;
+  const aprilMidY = yInitDistance;
+
+  const mayMidX = xInitDistance;
+  const mayMidY = yInitDistance + ySpacing;
+
+  const juneMidX = xInitDistance + xSpacing;
+  const juneMidY = yInitDistance + ySpacing;
+
+  const julyMidX = xInitDistance + xSpacing * 2;
+  const julyMidY = yInitDistance + ySpacing;
+
+  const augustMidX = xInitDistance + xSpacing * 3;
+  const augustMidY = yInitDistance + ySpacing;
+
+  const septemberMidX = xInitDistance;
+  const septemberMidY = yInitDistance + ySpacing * 2;
+
+  const octoberMidX = xInitDistance + xSpacing;
+  const octoberMidY = yInitDistance + ySpacing * 2;
+
+  const novemberMidX = xInitDistance + xSpacing * 2;
+  const novemberMidY = yInitDistance + ySpacing * 2;
+
+  const decemberMidX = xInitDistance + xSpacing * 3;
+  const decemberMidY = yInitDistance + ySpacing * 2;
+
+  january.push({
+    anomaly: row.obj["Jan"],
+    x: januaryMidX,
+    y: januaryMidY,
+    width: rowNum * 2,
+    height: rowNum * 2,
+  });
+  february.push({
+    anomaly: row.obj["Feb"],
+    x: februaryMidX,
+    y: februaryMidY,
+    width: rowNum * 2,
+    height: rowNum * 2,
+  });
+  march.push({
+    anomaly: row.obj["Mar"],
+    x: marchMidX,
+    y: marchMidY,
+    width: rowNum * 2,
+    height: rowNum * 2,
+  });
+  april.push({
+    anomaly: row.obj["Apr"],
+    x: aprilMidX,
+    y: aprilMidY,
+    width: rowNum * 2,
+    height: rowNum * 2,
+  });
+  may.push({
+    anomaly: row.obj["May"],
+    x: mayMidX,
+    y: mayMidY,
+    width: rowNum * 2,
+    height: rowNum * 2,
+  });
+  june.push({
+    anomaly: row.obj["Jun"],
+    x: juneMidX,
+    y: juneMidY,
+    width: rowNum * 2,
+    height: rowNum * 2,
+  });
+  july.push({
+    anomaly: row.obj["Jul"],
+    x: julyMidX,
+    y: julyMidY,
+    width: rowNum * 2,
+    height: rowNum * 2,
+  });
+  august.push({
+    anomaly: row.obj["Aug"],
+    x: augustMidX,
+    y: augustMidY,
+    width: rowNum * 2,
+    height: rowNum * 2,
+  });
+  september.push({
+    anomaly: row.obj["Sep"],
+    x: septemberMidX,
+    y: septemberMidY,
+    width: rowNum * 2,
+    height: rowNum * 2,
+  });
+  october.push({
+    anomaly: row.obj["Oct"],
+    x: octoberMidX,
+    y: octoberMidY,
+    width: rowNum * 2,
+    height: rowNum * 2,
+  });
+  november.push({
+    anomaly: row.obj["Nov"],
+    x: novemberMidX,
+    y: novemberMidY,
+    width: rowNum * 2,
+    height: rowNum * 2,
+  });
+  december.push({
+    anomaly: row.obj["Dec"],
+    x: decemberMidX,
+    y: decemberMidY,
+    width: rowNum * 2,
+    height: rowNum * 2,
+  });
+
+  stroke(255);
+
+  strokeWeight(1);
   for (let i = 0; i < january.length; i++) {
     circleColor(january[i].anomaly);
-    arc(
-      windowWidth / 2,
-      windowHeight / 2,
-      january[i].width,
-      january[i].width,
-      -90,
-      -60
-    );
+    rect(january[i].x, january[i].y, january[i].width, january[i].height);
   }
-
   for (let i = 0; i < february.length; i++) {
     circleColor(february[i].anomaly);
-    arc(
-      windowWidth / 2,
-      windowHeight / 2,
-      february[i].width,
-      february[i].width,
-      -60,
-      -30
-    );
+    rect(february[i].x, february[i].y, february[i].width, february[i].height);
   }
-
   for (let i = 0; i < march.length; i++) {
     circleColor(march[i].anomaly);
-    arc(
-      windowWidth / 2,
-      windowHeight / 2,
-      march[i].width,
-      march[i].width,
-      -30,
-      0
-    );
+    rect(march[i].x, march[i].y, march[i].width, march[i].height);
   }
-
   for (let i = 0; i < april.length; i++) {
     circleColor(april[i].anomaly);
-    arc(
-      windowWidth / 2,
-      windowHeight / 2,
-      april[i].width,
-      april[i].width,
-      0,
-      30
-    );
+    rect(april[i].x, april[i].y, april[i].width, april[i].height);
   }
-
   for (let i = 0; i < may.length; i++) {
     circleColor(may[i].anomaly);
-    arc(windowWidth / 2, windowHeight / 2, may[i].width, may[i].width, 30, 60);
+    rect(may[i].x, may[i].y, may[i].width, may[i].height);
   }
-
   for (let i = 0; i < june.length; i++) {
     circleColor(june[i].anomaly);
-    arc(
-      windowWidth / 2,
-      windowHeight / 2,
-      june[i].width,
-      june[i].width,
-      60,
-      90
-    );
+    rect(june[i].x, june[i].y, june[i].width, june[i].height);
   }
-
   for (let i = 0; i < july.length; i++) {
     circleColor(july[i].anomaly);
-    arc(
-      windowWidth / 2,
-      windowHeight / 2,
-      july[i].width,
-      july[i].width,
-      90,
-      120
-    );
+    rect(july[i].x, july[i].y, july[i].width, july[i].height);
   }
-
   for (let i = 0; i < august.length; i++) {
     circleColor(august[i].anomaly);
-    arc(
-      windowWidth / 2,
-      windowHeight / 2,
-      august[i].width,
-      august[i].width,
-      120,
-      150
-    );
+    rect(august[i].x, august[i].y, august[i].width, august[i].height);
   }
-
   for (let i = 0; i < september.length; i++) {
     circleColor(september[i].anomaly);
-    arc(
-      windowWidth / 2,
-      windowHeight / 2,
+    rect(
+      september[i].x,
+      september[i].y,
       september[i].width,
-      september[i].width,
-      150,
-      180
+      september[i].height
     );
   }
-
   for (let i = 0; i < october.length; i++) {
     circleColor(october[i].anomaly);
-    arc(
-      windowWidth / 2,
-      windowHeight / 2,
-      october[i].width,
-      october[i].width,
-      180,
-      210
-    );
+    rect(october[i].x, october[i].y, october[i].width, october[i].height);
   }
-
   for (let i = 0; i < november.length; i++) {
     circleColor(november[i].anomaly);
-    arc(
-      windowWidth / 2,
-      windowHeight / 2,
-      november[i].width,
-      november[i].width,
-      210,
-      240
-    );
+    rect(november[i].x, november[i].y, november[i].width, november[i].height);
   }
-
   for (let i = 0; i < december.length; i++) {
     circleColor(december[i].anomaly);
-    arc(
-      windowWidth / 2,
-      windowHeight / 2,
-      december[i].width,
-      december[i].width,
-      240,
-      270
-    );
+    rect(december[i].x, december[i].y, december[i].width, december[i].height);
   }
 
   rowNum++;
@@ -190,7 +225,6 @@ function draw() {
   }
 }
 
-//depending on the degree of the anomaly, the color of the arc is different so I made a function to facilitate that
 function circleColor(anomaly) {
   if (anomaly <= -0.4) {
     stroke(0, 210, 255);
